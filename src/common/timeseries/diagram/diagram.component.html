@@ -12,8 +12,8 @@
       <n52-dataset-table *ngIf="timeriesView == 'table'" [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [timeInterval]="timespan" [datasetOptions]="datasetOptions"></n52-dataset-table>  
       
       <div *ngIf="timeriesView === 'diagram'" class="diagram">
-        <n52-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
-          [presenterOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph>
+        <n52-custom-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
+          [presenterOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-custom-d3-timeseries-graph>
         <div class="loading-overlay" *ngIf="graphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>

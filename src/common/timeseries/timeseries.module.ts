@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HelgolandCoreModule } from '@helgoland/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HelgolandD3Module } from '@helgoland/d3';
+import { HelgolandD3Module} from '@helgoland/d3';
 import { HelgolandDatasetlistModule, HelgolandDatasetTableModule, HelgolandLabelMapperModule } from '@helgoland/depiction';
 import { HelgolandFavoriteModule } from '@helgoland/favorite';
 import { HelgolandMapControlModule, HelgolandMapSelectorModule } from '@helgoland/map';
@@ -17,6 +18,7 @@ import { ComponentsModule } from '../components/components.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
 import { LegendEntryComponent } from './diagram/legend-entry/legend-entry.component';
+import { CustomD3TimeseriesGraphComponent } from './diagram/custom-d3-timeseries-graph/custom-d3-timeseries-graph.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
@@ -27,7 +29,6 @@ import { TimeseriesRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
 import { CategorySelectorComponent } from './category-selection/category-selector.component';
-import { ExtendedStationMapSelectorComponent } from './extended-station-map-selector/extended-station-map-selector.component';
 
 
 export const timeseriesRoutes: Routes = [
@@ -78,6 +79,7 @@ export const nestedTimeseriesRoutes: Routes = [
         CommonModule,
         TranslateModule,
         FormsModule,
+        HelgolandCoreModule,
         HelgolandDatasetlistModule,
         HelgolandD3Module,
         HelgolandDatasetTableModule,
@@ -107,18 +109,21 @@ export const nestedTimeseriesRoutes: Routes = [
         TimeseriesFavoritesComponent,
         LegendEntryComponent,
         CategorySelectorComponent,
-        ExtendedStationMapSelectorComponent
+        CustomD3TimeseriesGraphComponent,
     ],
     providers: [
         TimeseriesService,
         TimeseriesDiagramPermalink,
         TimeseriesListSelectionCache,
         TimeseriesMapSelectionCache,
-
+        
         {
             provide: TimeseriesRouter,
             useClass: CustomTimeseriesRouter
         }
+    ],
+    exports: [
+        CustomD3TimeseriesGraphComponent,
     ]
 })
 export class TimeseriesModule { }
